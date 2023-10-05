@@ -1,4 +1,5 @@
 const uniqid = require("uniqid")
+const { search } = require("../router.js")
 
 const cubes = [{
     id: '4uvzq2mklncxswai',
@@ -25,6 +26,28 @@ exports.create = (cubeData)=>{
     cubes.push(Newcube)
     return Newcube
 }
-exports.getAll = () =>{
-    return [...cubes]
+exports.getAll = (search,from,to) =>{
+    let filterdCubes = [...cubes]
+    if (search) {
+        filterdCubes = filterdCubes.filter((cube) =>
+          cube.name.toLowerCase().includes(search.toLowerCase())
+        );
+      }
+    
+      if (from) {
+        filterdCubes = filterdCubes.filter(
+          (cube) => cube.difficultyLevel >= Number(from)
+        );
+      }
+    
+      if (to) {
+        filterdCubes = filterdCubes.filter(
+          (cube) => cube.difficultyLevel <= Number(to)
+        );
+      }
+    return filterdCubes
+}
+
+exports.getSingleCube = (id)=>{
+    return cubes.find((cube) => cube.id === id)
 }
