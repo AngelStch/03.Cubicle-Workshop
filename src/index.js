@@ -11,7 +11,7 @@ handlebarsConfig(app)
 expressConfig(app)
 
 dbConnect()
-.then(() => console.log("Successfully connection"))
+.then(() => console.log("Successfully connection to DB"))
 .catch((err) => console.log(`Error while connecting in databse: ${err}`))
 app.use(routes)
 
