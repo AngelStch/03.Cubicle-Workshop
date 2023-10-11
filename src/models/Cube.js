@@ -1,15 +1,18 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-const cubeScema = new mongoose.Schema({
-    name: String,
-    description: String,
-    imageUrl: String,
-    difficultyLevel: Number,
+const cubeSchema = new mongoose.Schema({
+  name: String,
+  description: String,
+  imageUrl: String,
+  difficultyLevel: Number,
+  accessories: [
+    {
+      type: mongoose.Types.ObjectId, // type from mongo
+      ref: "Accessory", // the name of the model
+    },
+  ],
+});
 
-    accessories:[{
-        type: mongoose.Types.ObjectId,
-        ref:"Accessory"
-    }]
-})
-const Cube  = mongoose.model("Cube", cubeScema)
-module.exports = Cube
+const Cube = mongoose.model("Cube", cubeSchema);
+
+module.exports = Cube;
