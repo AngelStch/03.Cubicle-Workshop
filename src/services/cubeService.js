@@ -5,8 +5,8 @@ exports.create =async (cubeData)=>{
   await cube.save();
   return cube
 }
-exports.getAll = (search,from,to) =>{
-    let filterdCubes = [...cubes]
+exports.getAll = async(search,from,to) =>{
+    let filterdCubes  =await Cube.find().lean()
     if (search) {
         filterdCubes = filterdCubes.filter((cube) =>
           cube.name.toLowerCase().includes(search.toLowerCase())
@@ -28,5 +28,5 @@ exports.getAll = (search,from,to) =>{
 }
 
 exports.getSingleCube = (id)=>{
-    return cubes.find((cube) => cube.id === id)
+  return Cube.findById(id)    
 }
