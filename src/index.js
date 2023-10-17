@@ -4,6 +4,7 @@ const handlebarsConfig = require("./config/handlebarasConfig.js")
 const expressConfig = require("./config/expressConfig.js")
 const routes = require("./router.js")
 const dbConnect = require("./config/dbConfig.js")
+const errorhandle = require("./middleware/errorhandle.js")
 
 
 const {PORT} = require("./constants.js")
@@ -14,6 +15,6 @@ dbConnect()
 .then(() => console.log("Successfully connection to DB"))
 .catch((err) => console.log(`Error while connecting in databse: ${err}`))
 app.use(routes)
-
+app.use(errorhandle)
 
 app.listen(PORT, ()=> console.log(`server is running on port ${PORT}`))

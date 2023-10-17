@@ -12,7 +12,6 @@ exports.auth = async (req, res, next) => {
 
             next()
         }catch (err) {
-            console.log({err});
             res.clearCookie("auth")
             res.redirect("/users/login")
         }
