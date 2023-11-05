@@ -33,7 +33,7 @@ router.post("/register", async (req, res) => {
     } catch (err) {
         const errorMessages = ExactErrorMessage(err)
         res.status(404).render("user/register", {errorMessages})
-    }
+    }   
 
 });
 
